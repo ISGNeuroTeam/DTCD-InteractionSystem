@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SystemPlugin } from '../../../DTCD-SDK/index';
+import { SystemPlugin } from '../../DTCD-SDK/index';
 
 export class InteractionSystem extends SystemPlugin {
   static getRegistrationMeta() {
