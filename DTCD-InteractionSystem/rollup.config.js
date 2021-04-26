@@ -5,7 +5,7 @@ const watch = Boolean(process.env.ROLLUP_WATCH);
 
 const pluginName = 'InteractionSystem';
 
-const output = watch ? `./../../DTCD/server/plugins/${pluginName}.js` : `./build/${pluginName}.js`;
+const output = watch ? `./../../DTCD/server/plugins/DTCD-${pluginName}/${pluginName}.js` : `./build/${pluginName}.js`;
 
 const plugins = [commonjs(), resolve({jsnext: true, preferBuiltins: true, browser: true})];
 
