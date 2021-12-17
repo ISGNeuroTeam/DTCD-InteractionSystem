@@ -1,16 +1,15 @@
 # InteractionSystem
 
-Core system-plugin (part of DTCD-SDK) for HTTP requests in [DTCD](https://github.com/ISGNeuroTeam/DTCD) application.
+System core plugin for HTTP requests in [DTCD](https://github.com/ISGNeuroTeam/DTCD) application.
 
 ## Getting Started
 
-In order to use this plugin you need to download it, build and move build-file to _plugins_ folder on DTCD server.
+In order to use this plugin you need to download it, build and move it to plugins directory of complex_rest dtcd_mockserver_plugin.
 
 ### Prerequisites
 
-- [node.js](https://nodejs.org/en/) LTS version 14.x.x
-- `make` utility
-- [DTCD](https://github.com/ISGNeuroTeam/DTCD) application
+- [Node.js](https://nodejs.org/en/) LTS version 14.x.x
+- [DTCD](https://github.com/ISGNeuroTeam/DTCD) v0.3.0
 
 ### Building
 
@@ -38,17 +37,12 @@ make clear
 
 ## Deployment
 
-Create package, then move archive to _plugins_ folder on DTCD server and unarchive it with the following commands:
-
-```
-tar -zxf DTCD-InteractionSystem-*.tar.gz ./DTCD-InteractionSystem/InteractionSystem.js
-mv ./DTCD-InteractionSystem/InteractionSystem.js InteractionSystem.js
-```
+Use `make pack` to get a deployable tarball. Move it to plugins directory of complex_rest dtcd_mockserver_plugin.
 
 ## Built With
 
-- [rollup](https://rollupjs.org/guide/en/) - Builder
-- [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+- [DTCD-SDK](https://github.com/ISGNeuroTeam/DTCD-SDK) v0.1.2
+- [Rollup.js](https://rollupjs.org/guide/en/) v2.35.1
 
 ## Contributing
 
@@ -60,7 +54,9 @@ Also you can see the [CHANGELOG](CHANGELOG.md) file.
 
 ## Authors
 
-Konstantin Rozov (konstantin@isgneuro.com)
+- Konstantin Rozov (konstantin@isgneuro.com)
+- Kuramshin Roman (rkuramshin@isgneuro.com)
+- Belikov Sergei (sbelikov@isgneuro.com)
 
 ## License
 
