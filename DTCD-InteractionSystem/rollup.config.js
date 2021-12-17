@@ -5,19 +5,19 @@ const watch = Boolean(process.env.ROLLUP_WATCH);
 
 const pluginName = 'InteractionSystem';
 
-const output = watch ? `./../../DTCD/server/plugins/${pluginName}.js` : `./dist/${pluginName}.js`;
+const output = watch ? `./../../DTCD/server/plugins/DTCD-${pluginName}/${pluginName}.js` : `./build/${pluginName}.js`;
 
-const plugins = [commonjs(), resolve({ jsnext: true, preferBuiltins: true, browser: true })];
+const plugins = [commonjs(), resolve({jsnext: true, preferBuiltins: true, browser: true})];
 
 export default {
-  input: `./src/${pluginName}.js`,
-  output: {
-    file: output,
-    format: 'esm',
-    sourcemap: false,
-  },
-  watch: {
-    include: ['./*/**'],
-  },
-  plugins,
+	input: `./src/${pluginName}.js`,
+	output: {
+		file: output,
+		format: 'esm',
+		sourcemap: false,
+	},
+	watch: {
+		include: ['./*/**'],
+	},
+	plugins,
 };
