@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SystemPlugin, LogSystemAdapter } from '../../DTCD-SDK/index';
+import { version } from './../package.json';
 
 export class InteractionSystem extends SystemPlugin {
   static getRegistrationMeta() {
@@ -7,7 +8,7 @@ export class InteractionSystem extends SystemPlugin {
       type: 'core',
       title: 'Система взаимодействия',
       name: 'InteractionSystem',
-      version: '0.3.1',
+      version,
       withDependencies: false,
       priority: 4,
     };
@@ -19,7 +20,11 @@ export class InteractionSystem extends SystemPlugin {
   constructor(guid) {
     super();
     this.#systemName = `${InteractionSystem.getRegistrationMeta().name}[${guid}]`;
-    this.#logSystem = new LogSystemAdapter(guid, InteractionSystem.getRegistrationMeta().name);
+    this.#logSystem = new LogSystemAdapter(
+      '0.4.0',
+      guid,
+      InteractionSystem.getRegistrationMeta().name
+    );
     this.#logSystem.debug(`Start of ${this.#systemName} creation`);
 
     this.baseURL = window.location.origin;
