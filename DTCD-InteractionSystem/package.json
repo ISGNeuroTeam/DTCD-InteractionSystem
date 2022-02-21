@@ -1,6 +1,6 @@
 {
   "name": "interaction-system",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "InteractionSystem",
   "main": "InteractionSystem.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "babel-jest": "^26.6.3",
     "jest": "^26.6.3",
     "rollup": "^2.33.2",
-    "rollup-plugin-livereload": "^2.0.0"
+    "rollup-plugin-livereload": "^2.0.0",
+    "@rollup/plugin-json": "^4.1.0"
   }
 }
