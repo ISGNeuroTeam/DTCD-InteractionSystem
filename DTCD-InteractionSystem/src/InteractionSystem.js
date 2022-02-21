@@ -21,7 +21,7 @@ export class InteractionSystem extends SystemPlugin {
     super();
     this.#systemName = `${InteractionSystem.getRegistrationMeta().name}[${guid}]`;
     this.#logSystem = new LogSystemAdapter(
-      '0.4.0',
+      '0.5.0',
       guid,
       InteractionSystem.getRegistrationMeta().name
     );
