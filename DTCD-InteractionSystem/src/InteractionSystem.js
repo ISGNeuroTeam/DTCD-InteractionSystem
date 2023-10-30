@@ -1,39 +1,40 @@
-import axios from 'axios';
 import { SystemPlugin, LogSystemAdapter } from '../../DTCD-SDK/index';
-import { version } from './../package.json';
+import axios from 'axios';
+import pluginMeta from './Plugin.Meta';
 
 export class InteractionSystem extends SystemPlugin {
   static getRegistrationMeta() {
-    return {
-      type: 'core',
-      title: 'Система взаимодействия',
-      name: 'InteractionSystem',
-      version,
-      withDependencies: false,
-      priority: 4,
-    };
+    return pluginMeta;
   }
 
   #systemName;
   #logSystem;
+  #keycloak;
 
   constructor(guid) {
     super();
-    this.#systemName = `${InteractionSystem.getRegistrationMeta().name}[${guid}]`;
-    this.#logSystem = new LogSystemAdapter(
-      '0.5.0',
-      guid,
-      InteractionSystem.getRegistrationMeta().name
-    );
+
+    this.#systemName = `${pluginMeta.name}[${guid}]`;
+    this.#logSystem = new LogSystemAdapter('0.5.0', guid, pluginMeta.name);
+    this.#keycloak = this.getDependence('keycloak');
+
     this.#logSystem.debug(`Start of ${this.#systemName} creation`);
 
-    this.baseURL = window.location.origin;
     this.instance = axios.create({
-      baseURL: this.baseURL,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      baseURL: window.location.origin,
     });
-    const config = {};
-    Object.assign(this, this.instance, config);
+
+    Object.assign(this, this.instance);
+
+    this.instance.interceptors.request.use(async config => {
+      await this.#keycloak.updateToken(90);
+
+      if (config.url.startsWith('/dtcd_workspaces')) {
+        config.headers.common.Authorization = `Bearer ${this.#keycloak.token}`;
+      }
+
+      return config;
+    });
 
     this.#logSystem.debug(`End of ${this.#systemName} creation`);
     this.#logSystem.info(`${this.#systemName} initialization complete`);
